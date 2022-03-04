@@ -1,0 +1,9 @@
+﻿{
+	"name": "VoidQoL",
+	"version_number": "1.0.0",
+	"website_url": "https://github.com/Anreol/RulebookUnlocker",
+	"description": "Like Rob's VoidFieldsQoL minus R2API, rewritten and for SotV. Can be configurated.",
+	"dependencies": [
+		"bbepis-BepInExPack-5.4.1801"
+	]
+}
