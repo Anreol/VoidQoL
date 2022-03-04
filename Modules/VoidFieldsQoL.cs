@@ -146,7 +146,7 @@ namespace VoidQoL.Modules
 
                             if (ActiveNullWard.sphereZone.IsInBounds(characterMaster.GetBody().transform.position) && Config.voidFieldsHealOnRoundStart.Value)
                             {
-                                characterMaster.GetBody().healthComponent.HealFraction(0.5f, default(ProcChainMask));
+                                characterMaster.GetBody().healthComponent.HealFraction(0.75f, default(ProcChainMask));
                                 EffectData effectData = new EffectData
                                 {
                                     origin = characterMaster.GetBody().transform.position
@@ -165,7 +165,7 @@ namespace VoidQoL.Modules
         {
             if (charge > 0.05) //If it's charging
             {
-                charge += accumulatedCharge / 100;
+                charge += accumulatedCharge / 100f;
                 accumulatedCharge = 0;
             }
         }

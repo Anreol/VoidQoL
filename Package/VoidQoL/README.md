@@ -19,5 +19,10 @@ You can contact me by messaging to Anreol#8231 or @anreol:poa.st
 
 ## Changelog
 
+**1.0.1**
+Quick Patch
+- Fixed charge amounts gained from enemies getting floored to integer.
+- Increased void vent healing on round start.
+
 **1.0.0**
 * Initial Release
