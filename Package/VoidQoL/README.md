@@ -19,6 +19,9 @@ You can contact me by messaging to Anreol#8231 or @anreol:poa.st
 
 ## Changelog
 
+**1.0.2**
+- Changed some logic in the script in an attempt to make sure that on cell activation effects got executed once.
+
 **1.0.1**
 Quick Patch
 - Fixed charge amounts gained from enemies getting floored to integer.

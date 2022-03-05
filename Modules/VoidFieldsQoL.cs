@@ -7,7 +7,6 @@ namespace VoidQoL.Modules
 {
     internal class VoidFieldsQoL
     {
-        private static bool alreadyStarted;
         private static VoidFieldsQoLServerListener instance;
 
         [RoR2.SystemInitializer(new Type[]
@@ -17,22 +16,22 @@ namespace VoidQoL.Modules
         public static void Init()
         {
             ArenaMissionController.onInstanceChangedGlobal += onInstanceChangedGlobal;
-            ArenaMissionController.onBeatArena += RemoveSubscription;
+            ArenaMissionController.onBeatArena += RemoveComponent;
         }
 
-        private static void RemoveSubscription()
+        private static void RemoveComponent()
         {
-            alreadyStarted = false;
-            ArenaMissionController.onInstanceChangedGlobal -= onInstanceChangedGlobal;
-            UnityEngine.Object.Destroy(instance);
+            if (NetworkServer.active && instance != null)
+            {
+                UnityEngine.Object.Destroy(instance);
+            }
         }
 
         private static void onInstanceChangedGlobal()
         {
-            if (!alreadyStarted && NetworkServer.active)
+            if (instance == null && NetworkServer.active)
             {
                 instance = ArenaMissionController.instance.gameObject.AddComponent<VoidFieldsQoLServerListener>();
-                alreadyStarted = true;
             }
         }
     }
@@ -110,53 +109,50 @@ namespace VoidQoL.Modules
 
         private void FixedUpdate()
         {
-            if (nOfClearedRounds < ArenaMissionController.instance.clearedRounds)
+            if (nOfClearedRounds != ArenaMissionController.instance.clearedRounds)
             {
                 cachedMachineOfCurrentRound = ArenaMissionController.instance.nullWards[ArenaMissionController.instance.currentRound].GetComponent<EntityStateMachine>();
                 nOfClearedRounds = ArenaMissionController.instance.clearedRounds;
                 awaitActivation = true;
             }
-            if (awaitActivation)
+            if (awaitActivation && cachedMachineOfCurrentRound.state is EntityStates.Missions.Arena.NullWard.Active ActiveNullWard)
             {
-                if (cachedMachineOfCurrentRound.state is EntityStates.Missions.Arena.NullWard.Active ActiveNullWard)
+                awaitActivation = false;
+                if (!Run.instance.isGameOverServer)
                 {
-                    if (!Run.instance.isGameOverServer)
+                    for (int i = 0; i < PlayerCharacterMasterController.instances.Count; i++)
                     {
-                        foreach (var item in PlayerCharacterMasterController.instances)
+                        CharacterMaster characterMaster = PlayerCharacterMasterController.instances[i].master;
+                        if (PlayerCharacterMasterController.instances[i].isConnected && characterMaster.IsDeadAndOutOfLivesServer() && Config.voidFieldsReviveOnRoundStart.Value)
                         {
-                            CharacterMaster characterMaster = item.master;
-                            if (item.isConnected && characterMaster.IsDeadAndOutOfLivesServer() && Config.voidFieldsReviveOnRoundStart.Value)
+                            Vector3 vector = characterMaster.deathFootPosition;
+                            if (ActiveNullWard.sphereZone)
                             {
-                                Vector3 vector = characterMaster.deathFootPosition;
-                                if (ActiveNullWard.sphereZone)
-                                {
-                                    vector = (TeleportHelper.FindSafeTeleportDestination(ActiveNullWard.sphereZone.transform.position, characterMaster.bodyPrefab.GetComponent<CharacterBody>(), RoR2Application.rng) ?? vector);
-                                }
-                                characterMaster.Respawn(vector, Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f));
-                                CharacterBody body = characterMaster.GetBody();
-                                if (body)
-                                {
-                                    body.AddTimedBuff(RoR2Content.Buffs.Immune, 3f);
-                                    foreach (EntityStateMachine entityStateMachine in body.GetComponents<EntityStateMachine>())
-                                    {
-                                        entityStateMachine.initialStateType = entityStateMachine.mainStateType;
-                                    }
-                                }
+                                vector = (TeleportHelper.FindSafeTeleportDestination(ActiveNullWard.sphereZone.transform.position, characterMaster.bodyPrefab.GetComponent<CharacterBody>(), RoR2Application.rng) ?? vector);
                             }
-
-                            if (ActiveNullWard.sphereZone.IsInBounds(characterMaster.GetBody().transform.position) && Config.voidFieldsHealOnRoundStart.Value)
+                            characterMaster.Respawn(vector, Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f));
+                            CharacterBody body = characterMaster.GetBody();
+                            if (body)
                             {
-                                characterMaster.GetBody().healthComponent.HealFraction(0.75f, default(ProcChainMask));
-                                EffectData effectData = new EffectData
+                                body.AddTimedBuff(RoR2Content.Buffs.Immune, 3f);
+                                foreach (EntityStateMachine entityStateMachine in body.GetComponents<EntityStateMachine>())
                                 {
-                                    origin = characterMaster.GetBody().transform.position
-                                };
-                                effectData.SetNetworkedObjectReference(characterMaster.GetBodyObject());
-                                EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/MedkitHealEffect"), effectData, true);
+                                    entityStateMachine.initialStateType = entityStateMachine.mainStateType;
+                                }
                             }
                         }
+
+                        if (ActiveNullWard.sphereZone.IsInBounds(characterMaster.GetBody().transform.position) && Config.voidFieldsHealOnRoundStart.Value)
+                        {
+                            characterMaster.GetBody().healthComponent.HealFraction(0.75f, default(ProcChainMask));
+                            EffectData effectData = new EffectData
+                            {
+                                origin = characterMaster.GetBody().transform.position
+                            };
+                            effectData.SetNetworkedObjectReference(characterMaster.GetBodyObject());
+                            EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/MedkitHealEffect"), effectData, true);
+                        }
                     }
-                    awaitActivation = false;
                 }
             }
         }
