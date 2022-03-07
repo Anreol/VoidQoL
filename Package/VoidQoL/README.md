@@ -1,5 +1,4 @@
 # VoidQoL
-### **Note:** Since R2API didn't get updated yet, DebugToolkit cannot be used, because of this, this mod hasn't been tested much.
 
 Server side and Vanilla compatible.
 For now the mod just replicates Rob's VoidFieldsQoL which has features like...
@@ -18,6 +17,9 @@ For now the mod just replicates Rob's VoidFieldsQoL which has features like...
 You can contact me by messaging to Anreol#8231 or @anreol:poa.st
 
 ## Changelog
+**1.0.3**
+- Fixed the config sometimes not generating (wtf?)
+- This should address non-default configs like revives so they work now
 
 **1.0.2**
 - Changed some logic in the script in an attempt to make sure that on cell activation effects got executed once.

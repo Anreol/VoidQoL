@@ -172,7 +172,7 @@ namespace VoidQoL.Modules
             {
                 if (cachedMachineOfCurrentRound.state is EntityStates.Missions.Arena.NullWard.Active)
                 {
-                    accumulatedCharge += obj.victimIsChampion ? 5f : obj.victimBody.bestFitRadius / 4f;
+                    accumulatedCharge += obj.victimIsChampion ? 5f : obj.victimBody.bestFitRadius / 2f;
                 }
             }
         }

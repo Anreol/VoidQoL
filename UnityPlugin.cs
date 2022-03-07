@@ -11,7 +11,7 @@ namespace VoidQoL
 #if DEBUG
             "9999." +
 #endif
-            "1.0.2";
+            "1.0.3";
 
         internal const string ModIdentifier = "VoidQoL";
         internal const string ModGuid = "com.Anreol." + ModIdentifier;
@@ -26,6 +26,7 @@ namespace VoidQoL
             Debug.LogWarning("Setting up localhost:7777");
             On.RoR2.Networking.GameNetworkManager.OnClientConnect += (self, user, t) => { };
 #endif
+            VoidQoL.Config.Initialize();
         }
     }
 }

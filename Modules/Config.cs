@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using System;
 
 namespace VoidQoL
 {
@@ -10,8 +11,7 @@ namespace VoidQoL
         internal static ConfigEntry<bool> voidFieldsReviveOnArenaEnd;
         internal static ConfigEntry<float> voidFieldsHoldoutZoneRadiusMult;
 
-        [RoR2.SystemInitializer]
-        internal static void Initialize()
+        public static void Initialize()
         {
             voidFieldsIncreaseChargeOnKill =
                 UnityPlugin.instance.Config.Bind("VoidQoL :: Void Fields Charge",
