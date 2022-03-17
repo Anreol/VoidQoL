@@ -1,8 +1,8 @@
 ﻿{
 	"name": "VoidQoL",
-	"version_number": "1.0.3",
+	"version_number": "1.1.0",
 	"website_url": "https://github.com/Anreol/VoidQoL",
-	"description": "Like Rob's VoidFieldsQoL minus R2API, rewritten and for SotV. Can be configurated.",
+	"description": "Like Rob's VoidFieldsQoL minus R2API, rewritten and for SotV. Can be configurated. Change Void Locus at will!",
 	"dependencies": [
 		"bbepis-BepInExPack-5.4.1801"
 	]
