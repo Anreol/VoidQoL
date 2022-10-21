@@ -21,7 +21,7 @@ namespace VoidQoL.Modules
 
         private static void RemoveComponent()
         {
-            if (NetworkServer.active && instance != null)
+            if (instance != null)
             {
                 UnityEngine.Object.Destroy(instance);
             }
@@ -65,10 +65,10 @@ namespace VoidQoL.Modules
 
         private void onBodyStartGlobal(CharacterBody obj)
         {
-            if (obj.teamComponent.teamIndex != TeamIndex.Player)
+            if (TeamManager.IsTeamEnemy(obj.teamComponent.teamIndex, TeamIndex.Player))
             {
-                obj.AddTimedBuff(RoR2Content.Buffs.CloakSpeed, 12f - obj.moveSpeed);
-                obj.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 0.5f); //To avoid chain killing due to procs... hehehe
+                obj.AddTimedBuff(RoR2Content.Buffs.CloakSpeed, Config.voidFieldsEnemyHasteDuration.Value - obj.moveSpeed);
+                obj.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 0.75f); //To avoid chain killing due to procs... hehehe
             }
         }
 
@@ -92,8 +92,8 @@ namespace VoidQoL.Modules
 
         private void OnDestroy()
         {
-            SphereZone sphereZone = ArenaMissionController.instance.nullWards[ArenaMissionController.instance.currentRound].GetComponent<SphereZone>();
             Debug.LogWarning("Destroyed!");
+            SphereZone sphereZone = cachedMachineOfCurrentRound.gameObject.GetComponent<SphereZone>();
             if (!Run.instance.isGameOverServer && Config.voidFieldsReviveOnArenaEnd.Value)
             {
                 Debug.LogWarning("Reviving players at round end!");
@@ -202,8 +202,16 @@ namespace VoidQoL.Modules
             {
                 if (cachedMachineOfCurrentRound.state is EntityStates.Missions.Arena.NullWard.Active || !awaitActivation)
                 {
-                    accumulatedCharge += obj.victimIsChampion ? 5f : obj.victimBody.bestFitRadius / 1.5f;
-                    totalAccumulatedChargeInCurrentRound += obj.victimIsChampion ? 5f : obj.victimBody.bestFitRadius / 1.5f;
+                    if (Config.voidFieldsIncreaseChargeBasedOnSize.Value)
+                    {
+                        accumulatedCharge += obj.victimIsChampion ? 5f : obj.victimBody.bestFitRadius / 1.5f;
+                        totalAccumulatedChargeInCurrentRound += obj.victimIsChampion ? 5f : obj.victimBody.bestFitRadius / 1.5f;
+                    }
+                    if (Config.voidFieldsIncreaseChargePercentagePerKill.Value > 0f)
+                    {
+                        accumulatedCharge += Config.voidFieldsIncreaseChargePercentagePerKill.Value;
+                        totalAccumulatedChargeInCurrentRound += Config.voidFieldsIncreaseChargePercentagePerKill.Value;
+                    }
                 }
             }
         }

@@ -17,6 +17,31 @@ namespace VoidQoL.Modules
         public static void Init()
         {
             Stage.onStageStartGlobal += onStageStartGlobal;
+            CharacterBody.onBodyStartGlobal += onBodyStartGlobal;
+            SceneCatalog.GetSceneDefFromSceneName("voidstage").suppressNpcEntry = Config.voidLocusSupressNPCEntry.Value;
+        }
+
+        private static void onBodyStartGlobal(CharacterBody obj)
+        {
+            if (NetworkServer.active && instance != null)
+            {
+                if (Config.voidLocusVoidMonsterNoVoidItem.Value && obj.teamComponent.teamIndex == TeamIndex.Void)
+                {
+                    List<ItemIndex> voidShit = new List<ItemIndex>();
+                    foreach (var item in obj.inventory.itemAcquisitionOrder)
+                    {
+                        ItemDef shit = ItemCatalog.GetItemDef(item);
+                        if (shit.tier == ItemTier.VoidTier1 || shit.tier == ItemTier.VoidTier2 || shit.tier == ItemTier.VoidTier3 || shit.tier == ItemTier.VoidBoss)
+                        {
+                            voidShit.Add(item);
+                        }
+                    }
+                    foreach (var item in voidShit)
+                    {
+                        obj.inventory.ResetItem(item);
+                    }
+                }
+            }
         }
 
         /*private static void EditVoidSignalPrefab()
@@ -37,18 +62,21 @@ namespace VoidQoL.Modules
 
     public class VoidLocusQoLMissionControllerListener : MonoBehaviour
     {
+        //FIXME: NOT NETWORKED
         private int cachedFogCount; //if this changes, it means that there's a new battery active
 
         private void FixedUpdate()
         {
-            if (VoidStageMissionController.instance.fogDamageController)
+            //FIXME: NOT NETWORKED
+            /*if (VoidStageMissionController.instance.fogDamageController)
             {
                 if (VoidStageMissionController.instance.fogRefCount > cachedFogCount)
                 {
                     ScanForHoldoutZones();
                 }
                 cachedFogCount = VoidStageMissionController.instance.fogRefCount;
-            }
+            }*/
+            ScanForHoldoutZones();
         }
 
         private void ScanForHoldoutZones()
@@ -71,6 +99,10 @@ namespace VoidQoL.Modules
                         foreach (var body in affectedBodiesOnTeam)
                         {
                             body.AddTimedBuff(DLC1Content.Buffs.KillMoveSpeed, 6f);
+                            body.AddTimedBuff(DLC1Content.Buffs.KillMoveSpeed, 6f);
+                            body.AddTimedBuff(DLC1Content.Buffs.KillMoveSpeed, 6f);
+                            body.AddTimedBuff(DLC1Content.Buffs.KillMoveSpeed, 6f);
+                            body.AddTimedBuff(DLC1Content.Buffs.KillMoveSpeed, 6f);
 #if DEBUG
                             Debug.Log("Applied haste to " + body);
 #endif
@@ -89,12 +121,11 @@ namespace VoidQoL.Modules
         private TeamMask voidTeam;
         private float chargeFromKilling;
         private float stopwatch;
+
         private void OnEnable()
         {
             InstanceTracker.Add<VoidLocusQoLHoldoutZoneController>(this);
             disThing = gameObject.GetComponent<HoldoutZoneController>();
-            voidTeam = new TeamMask();
-            voidTeam.AddTeam(TeamIndex.Void);
             if (disThing == null)
             {
                 Debug.LogError("Destroying self, theres no HoldoutZoneController to attach ourselves to!");
@@ -111,6 +142,8 @@ namespace VoidQoL.Modules
             }
             if (NetworkServer.active)
             {
+                voidTeam = new TeamMask();
+                voidTeam.AddTeam(TeamIndex.Void);
                 if (Config.voidLocusDecreaseRadiusIfEnemyInvades.Value)
                 {
 #if DEBUG
@@ -149,7 +182,7 @@ namespace VoidQoL.Modules
         {
             if (TeamManager.IsTeamEnemy(obj.victimTeamIndex, TeamIndex.Player))
             {
-                chargeFromKilling += obj.victimIsChampion ? 5f : obj.victimBody.bestFitRadius / 2f;
+                chargeFromKilling += obj.victimIsChampion ? 5f : obj.victimBody.bestFitRadius / 5f;
             }
         }
 
@@ -186,8 +219,11 @@ namespace VoidQoL.Modules
                     stopwatch = 0;
                     charge += Config.voidLocusHoldoutZoneAutoCharge.Value;
                 }
-                charge += chargeFromKilling;
-                chargeFromKilling = 0;
+                if (Config.voidLocusIncreaseChargeOnKill.Value)
+                {
+                    charge += chargeFromKilling / 100;
+                    chargeFromKilling = 0;
+                }
             }
         }
     }

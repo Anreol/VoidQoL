@@ -10,9 +10,8 @@
       "VoidQoL/1.0.0": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
-          "RiskOfRain2.GameLibs": "1.2.1-r.0",
+          "RiskOfRain2.GameLibs": "1.2.3.1-r.0",
           "BepInEx": "5.4.19.0",
-          "Unity.ResourceManager": "0.0.0.0",
           "UnityEngine.CoreModule": "0.0.0.0",
           "UnityEngine": "0.0.0.0",
           "UnityEngine.PhysicsModule": "0.0.0.0"
@@ -27,7 +26,7 @@
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
       },
-      "RiskOfRain2.GameLibs/1.2.1-r.0": {
+      "RiskOfRain2.GameLibs/1.2.3.1-r.0": {
         "runtime": {
           "lib/netstandard2.0/Assembly-CSharp.dll": {
             "assemblyVersion": "0.0.0.0",
@@ -38,6 +37,10 @@
             "fileVersion": "0.0.0.0"
           },
           "lib/netstandard2.0/HGUnityUtils.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "lib/netstandard2.0/KinematicCharacterController.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           },
@@ -58,6 +61,10 @@
             "fileVersion": "0.0.0.0"
           },
           "lib/netstandard2.0/Unity.Addressables.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "lib/netstandard2.0/Unity.ResourceManager.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           },
@@ -84,14 +91,6 @@
           "BepInEx.dll": {
             "assemblyVersion": "5.4.19.0",
             "fileVersion": "5.4.19.0"
-          }
-        }
-      },
-      "Unity.ResourceManager/0.0.0.0": {
-        "runtime": {
-          "Unity.ResourceManager.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -140,38 +139,6 @@
           "MonoMod.Utils.dll": {
             "assemblyVersion": "22.1.29.1",
             "fileVersion": "22.1.29.1"
-          }
-        }
-      },
-      "UnityEngine.UnityWebRequestModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.UnityWebRequestModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.AssetBundleModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.AssetBundleModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.UnityWebRequestAssetBundleModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.UnityWebRequestAssetBundleModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.JSONSerializeModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.JSONSerializeModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -266,6 +233,14 @@
       "UnityEngine.AnimationModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.AnimationModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.AssetBundleModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.AssetBundleModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -391,6 +366,14 @@
           }
         }
       },
+      "UnityEngine.JSONSerializeModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.JSONSerializeModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.LocalizationModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.LocalizationModule.dll": {
@@ -399,9 +382,25 @@
           }
         }
       },
+      "UnityEngine.UnityWebRequestModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.UnityWebRequestModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.UNETModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.UNETModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.UnityWebRequestAssetBundleModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.UnityWebRequestAssetBundleModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -581,19 +580,14 @@
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
-    "RiskOfRain2.GameLibs/1.2.1-r.0": {
+    "RiskOfRain2.GameLibs/1.2.3.1-r.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-72KOEeb++4fURyGiTlQXbNqdLyxcJ6QvYMamlYncf3f3gDZyIbIXD+GQaC2D6pFXFyvlMVRh7qvZtbnTIMOqig==",
-      "path": "riskofrain2.gamelibs/1.2.1-r.0",
-      "hashPath": "riskofrain2.gamelibs.1.2.1-r.0.nupkg.sha512"
+      "sha512": "sha512-50SBEaHvZZnGbPKD6MIh4M/z/7Z0YUyy1fBg1Pe86r9tQFbPv4eqPDX3Xf1AfOjNruImsqp8sBxUrTwAahfjnw==",
+      "path": "riskofrain2.gamelibs/1.2.3.1-r.0",
+      "hashPath": "riskofrain2.gamelibs.1.2.3.1-r.0.nupkg.sha512"
     },
     "BepInEx/5.4.19.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Unity.ResourceManager/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -624,26 +618,6 @@
       "sha512": ""
     },
     "MonoMod.Utils/22.1.29.1": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.UnityWebRequestModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.AssetBundleModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.UnityWebRequestAssetBundleModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.JSONSerializeModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -704,6 +678,11 @@
       "sha512": ""
     },
     "UnityEngine.AnimationModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.AssetBundleModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -783,12 +762,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.JSONSerializeModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.LocalizationModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.UnityWebRequestModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.UNETModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.UnityWebRequestAssetBundleModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

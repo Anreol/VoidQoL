@@ -1,7 +1,9 @@
 # VoidQoL
 
 (Mostly!) Server side and Vanilla compatible.
+
 If clients don't have the mod, the Signal charge zone in Void Locus type will always be a sphere for them.
+
 Based on Rob's VoidFieldsQoL!
 
 ## Features
@@ -14,6 +16,7 @@ Based on Rob's VoidFieldsQoL!
 
 And for Void Locus:
 - Increase Signal charge with enemy kills. (D: False)
+- Ban drones and other NPCs from entering Void Locus, so they don't get killed by the fog. (D: False)
 - Option to decrease signal radius if an enemy steps inside. (D: True)
 - Option to change the charge zone from a sphere to a tube (like Moon's escape sequence or Simulacrum). (D: True)
 - Option to give players inside the fog a speed boost whenever a signal gets activated. (D: True)
@@ -26,9 +29,35 @@ And for Void Locus:
 - Add options for Survivors of the Void Void Camps, such as minimum stage for void camps to appear, count, and others.
 
 ### Contact
-You can contact me by messaging to Anreol#8231 or @anreol:poa.st
+You can contact me by messaging to Anreol#8231 on Discord chat web application.
 
 ## Changelog
+**1.1.5**
+- Changed enemy haste check to only apply to bodies in teams enemy to players, instead of everything but players.
+- Added a couple of user-requested features, might need a config regeneration, no idea:
+- Should charge on kill increase depending on enemy size / is champion or not. (voidFieldsIncreaseChargeBasedOnSize)
+- Flat charge percentage per kill. (voidFieldsIncreaseChargePercentagePerKill)
+- Duration of the cloak speed buff. Default value has been increased from 12 to 16 (voidFieldsEnemyHasteDuration)
+
+**1.1.4**
+- Updated libraries to avoid the missing tier field error.
+- That's the update.
+
+**1.1.3**
+- Fixed all void items getting removed upon arriving on void locus if the remove void items from monsters config was enabled
+- Added a config to ban NPCs from entering Void Locus
+
+**1.1.2**
+- Void enemies in Void Locus now give less charge on kill as those void enemies are bigger in comparison to the small ones in Void Fields.
+- Void Locus charge on kill now should no longer instantly charge the cell.
+- FOR THE LOVE OF GOD, MAY THE REVIVAL ON ROUND END FINALLY WORK IN VOID FIELDS. GOD.
+
+**1.1.1**
+- Fixed clients not seeing the changed Void Locus zones
+- Fixed charge on death applying in Void Locus regardless of configuration
+- Added a configuration to remove void items from all monsters inside void locus.
+- Players in void fog now get 5 stacks of haste, instead of just 1.
+
 **1.1.0**
 Void Locus Update
 - Added config for the following:

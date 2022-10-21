@@ -1,6 +1,4 @@
 ﻿using BepInEx;
-using System;
-using UnityEngine;
 
 namespace VoidQoL
 {
@@ -11,7 +9,7 @@ namespace VoidQoL
 #if DEBUG
             "9999." +
 #endif
-            "1.1.0";
+            "1.1.5";
 
         internal const string ModIdentifier = "VoidQoL";
         internal const string ModGuid = "com.Anreol." + ModIdentifier;
