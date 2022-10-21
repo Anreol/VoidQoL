@@ -1,4 +1,5 @@
 Server side and Vanilla compatible. Mostly.
+
 For now the mod just replicates Rob's VoidFieldsQoL which has features like...
 
 ## Features
@@ -13,4 +14,5 @@ For now the mod just replicates Rob's VoidFieldsQoL which has features like...
 
 ### Contact
 You can contact me by messaging to Anreol#8231 or by writting in this GitHub.
+
 Please write anything you need in this GitHub.
