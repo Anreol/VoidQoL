@@ -1,7 +1,4 @@
-# VoidQoL
-### **Note:** Since R2API didn't get updated yet, DebugToolkit cannot be used, because of this, this mod hasn't been tested much.
-
-Server side and Vanilla compatible.
+Server side and Vanilla compatible. Mostly.
 For now the mod just replicates Rob's VoidFieldsQoL which has features like...
 
 ## Features
@@ -15,9 +12,5 @@ For now the mod just replicates Rob's VoidFieldsQoL which has features like...
 - Add options for Survivors of the Void Void Camps, such as minimum stage for void camps to appear, count, and others.
 
 ### Contact
-You can contact me by messaging to Anreol#8231 or @anreol:poa.st
-
-## Changelog
-
-**1.0.0**
-* Initial Release
+You can contact me by messaging to Anreol#8231 or by writting in this GitHub.
+Please write anything you need in this GitHub.
