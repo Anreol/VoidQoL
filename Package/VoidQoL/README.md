@@ -32,6 +32,9 @@ And for Void Locus:
 You can contact me by messaging to Anreol#8231 on Discord chat web application.
 
 ## Changelog
+**1.1.6**
+- Recompiled for ver. 1.3.1#274
+
 **1.1.5**
 - Changed enemy haste check to only apply to bodies in teams enemy to players, instead of everything but players.
 - Added a couple of user-requested features, might need a config regeneration, no idea:

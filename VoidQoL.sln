@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoidQoL", "VoidQoL.csproj", "{3ECD6C9D-1FF6-496E-B447-ABF0A4851075}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ECD6C9D-1FF6-496E-B447-ABF0A4851075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECD6C9D-1FF6-496E-B447-ABF0A4851075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECD6C9D-1FF6-496E-B447-ABF0A4851075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECD6C9D-1FF6-496E-B447-ABF0A4851075}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7534B6E-A182-4707-9C88-417EEA49A9A7}
+	EndGlobalSection
+EndGlobal

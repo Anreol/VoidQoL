@@ -9,7 +9,7 @@ namespace VoidQoL
 #if DEBUG
             "9999." +
 #endif
-            "1.1.5";
+            "1.1.6";
 
         internal const string ModIdentifier = "VoidQoL";
         internal const string ModGuid = "com.Anreol." + ModIdentifier;
